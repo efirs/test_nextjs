@@ -10,7 +10,12 @@ declare global {
 // hot reloading. However, in production, Next.js would completely tear down before
 // restarting, thus, disconnecting and reconnecting to the Tigris.
 if (!global.tigris) {
-  const tigrisClient = new Tigris({serverUrl: "localhost:8081", projectName: "test_nextjs", branch: "main"});
+  let branch = "main"
+  if (process.env.BRANCH) {
+    branch =process.env.BRANCH
+  }
+
+  const tigrisClient = new Tigris({serverUrl: "localhost:8081", projectName: "test_nextjs", branch: branch});
   global.tigris = tigrisClient.getDatabase();
 }
 const tigris = global.tigris;

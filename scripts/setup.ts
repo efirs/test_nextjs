@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === undefined) {
 
 async function main() {
   // setup client and register schemas
-  const tigrisClient = new Tigris({serverUrl: "localhost:8081", projectName: "test_nextjs", branch: "main"});
+  const tigrisClient = new Tigris({serverUrl: "api.dev.tigrisdata.cloud", projectName: "test_nextjs", branch: process.env.BRANCH});
   await tigrisClient.registerSchemas([
     User,
     Order,
